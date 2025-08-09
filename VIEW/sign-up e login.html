@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login e Cadastro</title>
   <link rel="stylesheet" href="../CSS/login.css">
+  <link class="form-cadastro" href="./forms-cadastro-empresa.html">
 </head>
 <body>
   <main class="login-wrapper">
@@ -32,7 +33,7 @@
               <a href="#">Esqueceu a senha?</a>
             </div>
 
-            <button type="submit">Entrar</button>
+            <button href="./sign-up e login.html" type="submit">Entrar</button>
           </form>
           <p>Ainda não tem conta? <span onclick="toggleForm()">Cadastre-se</span></p>
         </section>
@@ -56,8 +57,10 @@
                 <input type="checkbox" required /> Concordo com os <a href="#">termos de responsabilidade</a>
               </label>
             </div>
+          
+            <button type="button" onclick="window.location.href='forms-cadastro-empresa.html'">Sign-up</button>
 
-            <button type="submit">Sign-up</button>
+            
           </form>
           <p>Já tem conta? <span onclick="toggleForm()">Entrar</span></p>
         </section>
@@ -73,11 +76,14 @@
       const signup = document.getElementById('signup-panel');
 
       login.classList.toggle('active');
-      login.classList.toggle('hidden');
+      login.classList.toggle('hidden')
+     
 
       signup.classList.toggle('active');
-      signup.classList.toggle('hidden');
+      signup.classList.toggle('hidden')
+     
     }
+
   </script>
 </body>
 </html>
