@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login e Cadastro</title>
   <link rel="stylesheet" href="../CSS/login.css">
-  <link class="form-cadastro" href="./forms-cadastro-empresa.html">
+  <link class="form-cadastro" href="CSS/forms-cadastro.css">
 </head>
 <body>
   <main class="login-wrapper">
@@ -21,19 +21,19 @@
         <section class="form-panel active" id="login-panel">
           <img src="logo.png" alt="Logo Empresa" class="logo" />
           <h2>Login</h2>
-          <form>
+          <form id="form-login" method="POST" action="../CONTROLLER/login.php">
             <label for="email">E-mail</label>
-            <input type="text" id="email" placeholder="Digite seu e-mail" />
+            <input type="text" id="email" placeholder="Digite seu e-mail" name="email_login"/>
 
             <label for="password">Senha</label>
-            <input type="password" id="password" placeholder="Digite sua senha" />
+            <input type="password" id="password" placeholder="Digite sua senha" name="senha_login"/>
 
             <div class="form-extra">
               <label><input type="checkbox" /> Lembrar-me</label>
               <a href="#">Esqueceu a senha?</a>
             </div>
 
-            <button href="./sign-up e login.html" type="submit">Entrar</button>
+            <button type="submit">Entrar</button>
           </form>
           <p>Ainda não tem conta? <span onclick="toggleForm()">Cadastre-se</span></p>
         </section>
