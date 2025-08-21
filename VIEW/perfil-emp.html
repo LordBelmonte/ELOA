@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELOA - Dashboard</title>
+    <!-- Added link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Service Registration Modal -->
+        <div class="service-modal" id="serviceModal">
+            <button class="close-modal" id="closeModal">×</button>
+            <div class="modal-header">
+                <h2>Cadastro de serviços</h2>
+            </div>
+            
+            <form id="serviceForm">
+                <div class="form-group">
+                    <label for="serviceTitle">Título do serviço</label>
+                    <input type="text" id="serviceTitle" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="serviceDescription">Descrição do serviço</label>
+                    <input type="text" id="serviceDescription" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="servicePricing">Precificação</label>
+                    <input type="text" id="servicePricing" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentMethod">Forma de Pagamento</label>
+                    <input type="text" id="paymentMethod" class="form-input" required>
+                </div>
+                
+                <div class="image-section">
+                    <label>Imagem</label>
+                    <div class="modal-buttons">
+                        <button type="button" class="modal-btn upload-btn" id="uploadBtn">UPLOAD</button>
+                        <button type="submit" class="modal-btn submit-btn">PRONTO</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">E</div>
+                <h2>ELOA</h2>
+            </div>
+            
+            <div class="sidebar-nav">
+                <a href="#" class="nav-item">
+                    <span class="icon">🏠</span>
+                    Home
+                </a>
+                
+                <a href="#" class="nav-item">
+                    <span class="icon">📋</span>
+                    Projetos
+                </a>
+                
+                <a href="#" class="nav-item active">
+                    <span class="icon">⚙️</span>
+                    Serviços
+                </a>
+                
+                <div class="sub-nav">
+                    <a href="#" class="nav-item">Lista serviço</a>
+                    <a href="#" class="nav-item">Cadastrar</a>
+                </div>
+                
+                <a href="#" class="nav-item">
+                    <span class="icon">📅</span>
+                    Calendário
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <span class="icon">🚪</span>
+                    Logout
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                
+                <div class="header-right">
+                    <div class="user-avatars">
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <span class="add-members">ADD MEMBROS</span>
+                    </div>
+                    
+                    <div class="header-icons">
+                        <div class="header-icon">🔍</div>
+                        <div class="header-icon">🔔</div>
+                        <div class="header-icon">👤</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Company Header -->
+                <div class="company-header">
+                    <div class="company-info">
+                        <div class="company-avatar">👤</div>
+                        <h2>Nome da empresa</h2>
+                    </div>
+                    <button class="register-btn">Cadastro de serviços</button>
+                </div>
+
+                <!-- Services Section -->
+                <section class="services-section">
+                    <h2>Serviços cadastrados</h2>
+                    
+                    <div class="service-card" data-service-id="1" data-title="Consultoria em Marketing Digital" data-description="Estratégias personalizadas para aumentar sua presença online" data-pricing="R$ 500,00/mês" data-payment="Cartão de crédito, PIX">
+                        <div class="service-image"></div>
+                        <div class="service-info">
+                            <h3>Consultoria em Marketing Digital</h3>
+                            <p>R$ 500,00/mês</p>
+                            <p>Cartão de crédito, PIX</p>
+                        </div>
+                        <div class="service-actions">
+                            <button class="action-btn edit-btn" onclick="editService(this)">✏️ Editar</button>
+                            <button class="action-btn delete-btn">✕ Excluir</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-service-id="2" data-title="Design de Logotipo" data-description="Criação de identidade visual única para sua marca" data-pricing="R$ 800,00" data-payment="À vista, parcelado">
+                        <div class="service-image"></div>
+                        <div class="service-info">
+                            <h3>Design de Logotipo</h3>
+                            <p>R$ 800,00</p>
+                            <p>À vista, parcelado</p>
+                        </div>
+                        <div class="service-actions">
+                            <button class="action-btn edit-btn" onclick="editService(this)">✏️ Editar</button>
+                            <button class="action-btn delete-btn">✕ Excluir</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-service-id="3" data-title="Desenvolvimento de Website" data-description="Sites responsivos e otimizados para SEO" data-pricing="R$ 2.500,00" data-payment="30% entrada + 70% entrega">
+                        <div class="service-image"></div>
+                        <div class="service-info">
+                            <h3>Desenvolvimento de Website</h3>
+                            <p>R$ 2.500,00</p>
+                            <p>30% entrada + 70% entrega</p>
+                        </div>
+                        <div class="service-actions">
+                            <button class="action-btn edit-btn" onclick="editService(this)">✏️ Editar</button>
+                            <button class="action-btn delete-btn">✕ Excluir</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Added link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
