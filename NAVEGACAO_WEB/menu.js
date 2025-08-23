@@ -1,6 +1,6 @@
 // Importar o nav em todas as páginas
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("../NAVEGACAO WEB/menu.html")
+  fetch("../NAVEGACAO_WEB/menu.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("sidebar-container").innerHTML = data
