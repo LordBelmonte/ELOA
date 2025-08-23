@@ -1,30 +1,13 @@
-// Sidebar toggle functionality
-const menuToggle = document.getElementById("menuToggle")
-const sidebar = document.getElementById("sidebar")
-const mainContent = document.getElementById("mainContent")
-const overlay = document.getElementById("overlay")
-
 // Service modal elements
 const serviceModal = document.getElementById("serviceModal")
 const closeModal = document.getElementById("closeModal")
 const registerBtn = document.querySelector(".register-btn")
 const serviceForm = document.getElementById("serviceForm")
 const uploadBtn = document.getElementById("uploadBtn")
+const overlay = document.getElementById("overlay")
 
 let isEditMode = false
 let currentServiceId = null
-
-function toggleSidebar() {
-  sidebar.classList.toggle("open")
-  mainContent.classList.toggle("sidebar-open")
-  overlay.classList.toggle("active")
-}
-
-function closeSidebar() {
-  sidebar.classList.remove("open")
-  mainContent.classList.remove("sidebar-open")
-  overlay.classList.remove("active")
-}
 
 // Modal functions
 function openServiceModal() {
@@ -67,8 +50,6 @@ function editService(button) {
   // Open modal
   openServiceModal()
 }
-
-menuToggle.addEventListener("click", toggleSidebar)
 
 overlay.addEventListener("click", () => {
   if (serviceModal.classList.contains("active")) {
