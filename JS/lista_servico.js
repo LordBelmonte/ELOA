@@ -1,17 +1,7 @@
 // Dashboard JavaScript
 document.addEventListener("DOMContentLoaded", () => {
   // Elements
-  const menuToggle = document.getElementById("menuToggle")
-  const sidebar = document.getElementById("sidebar")
-  const overlay = document.getElementById("overlay")
-  const mainContent = document.getElementById("mainContent")
-  const navItems = document.querySelectorAll(".nav-item")
   const servicesGrid = document.getElementById("servicesGrid")
-
-  // State
-  let sidebarOpen = false
-  let activeNav = "Serviços"
-
   // Services data
   const services = [
     {
@@ -64,45 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ]
 
-  // Toggle sidebar function
-  function toggleSidebar() {
-    sidebarOpen = !sidebarOpen
-
-    if (sidebarOpen) {
-      sidebar.classList.add("open")
-      overlay.classList.add("active")
-      if (window.innerWidth > 768) {
-        mainContent.classList.add("sidebar-open")
-      }
-    } else {
-      sidebar.classList.remove("open")
-      overlay.classList.remove("active")
-      mainContent.classList.remove("sidebar-open")
-    }
-  }
-
-  // Handle navigation click
-  function handleNavClick(navItem) {
-    const navName = navItem.getAttribute("data-nav")
-
-    // Remove active class from all nav items
-    navItems.forEach((item) => item.classList.remove("active"))
-
-    // Add active class to clicked item
-    navItem.classList.add("active")
-
-    // Update active nav state
-    activeNav = navName
-
-    // Close sidebar on mobile after navigation
-    if (window.innerWidth <= 768) {
-      toggleSidebar()
-    }
-
-    // Prevent default link behavior
-    return false
-  }
-
   // Render services
   function renderServices() {
     servicesGrid.innerHTML = services
@@ -123,27 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .join("")
   }
-
-  // Event listeners
-  menuToggle.addEventListener("click", toggleSidebar)
-  overlay.addEventListener("click", toggleSidebar)
-
-  // Navigation event listeners
-  navItems.forEach((navItem) => {
-    navItem.addEventListener("click", function (e) {
-      e.preventDefault()
-      handleNavClick(this)
-    })
-  })
-
-  // Handle window resize
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 768 && sidebarOpen) {
-      mainContent.classList.add("sidebar-open")
-    } else {
-      mainContent.classList.remove("sidebar-open")
-    }
-  })
 
   // Initialize
   renderServices()
