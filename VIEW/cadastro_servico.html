@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ELOA - Dashboard</title>
     <!-- Added link to external CSS file -->
-    <link rel="stylesheet" href="../CSS/perfil-emp.css">
-    <link rel="stylesheet" href="../JS/perfil-emp.js">
+    <link rel="stylesheet" href="../CSS/cadastro_servico.css">
+    
 </head>
 <body>
     <div class="container">
+        <!-- Aqui vai carregar o nav -->
+        <div id="sidebar-container"></div> 
+
         <!-- Overlay -->
         <div class="overlay" id="overlay"></div>
 
@@ -51,71 +54,11 @@
             </form>
         </div>
 
-        <!-- Sidebar -->
-        <nav class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">E</div>
-                <h2>ELOA</h2>
-            </div>
-            
-            <div class="sidebar-nav">
-                <a href="#" class="nav-item">
-                    <span class="icon">🏠</span>
-                    Home
-                </a>
-                
-                <a href="#" class="nav-item">
-                    <span class="icon">📋</span>
-                    Projetos
-                </a>
-                
-                <a href="#" class="nav-item active">
-                    <span class="icon">⚙️</span>
-                    Serviços
-                </a>
-                
-                <div class="sub-nav">
-                    <a href="#" class="nav-item">Lista serviço</a>
-                    <a href="#" class="nav-item">Cadastrar</a>
-                </div>
-                
-                <a href="#" class="nav-item">
-                    <span class="icon">📅</span>
-                    Calendário
-                </a>
-            </div>
-            
-            <div class="sidebar-footer">
-                <a href="#" class="nav-item">
-                    <span class="icon">🚪</span>
-                    Logout
-                </a>
-            </div>
-        </nav>
+       
 
         <!-- Main Content -->
         <main class="main-content" id="mainContent">
-            <!-- Top Header -->
-            <header class="top-header">
-                <button class="menu-toggle" id="menuToggle">☰</button>
-                
-                <div class="header-right">
-                    <div class="user-avatars">
-                        <div class="avatar"></div>
-                        <div class="avatar"></div>
-                        <div class="avatar"></div>
-                        <div class="avatar"></div>
-                        <span class="add-members">ADD MEMBROS</span>
-                    </div>
-                    
-                    <div class="header-icons">
-                        <div class="header-icon">🔍</div>
-                        <div class="header-icon">🔔</div>
-                        <div class="header-icon">👤</div>
-                    </div>
-                </div>
-            </header>
-
+           
             <!-- Content -->
             <div class="content">
                 <!-- Company Header -->
@@ -175,6 +118,7 @@
     </div>
 
     <!-- Added link to external JavaScript file -->
-    <script src="../JS/perfil-emp.js"></script>
+     <script src="../NAVEGACAO_WEB/menu.js"></script>
+    <script src="../JS/cadastro_servico.js"></script>
 </body>
 </html>
