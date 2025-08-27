@@ -6,7 +6,12 @@
   background-color: #f8fafc;
 }
 
-
+.main-content {
+  flex: 1;
+  padding: 100px 40px;
+  overflow-y: auto;
+  transition: margin-left 0.3s;
+}
 
 .services-header {
   display: flex;
