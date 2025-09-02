@@ -1,0 +1,495 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #e500a0, #7b2ff7);
+  --card-bg: #fff;
+  --text-dark: #222;
+  --text-light: #666;
+  --primary: #e500a0;
+  --secondary: #7b2ff7;
+  --radius: 12px;
+  --shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px; /* Espaço para o header fixo */
+}
+
+/* Header */
+.header {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background: var(--bg-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: #fff;
+  top: 0;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Adicione esta classe para esconder o header ao rolar */
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+/* Conteúdo principal - removi a margem superior que estava causando problemas */
+.main-content {
+  flex: 1;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+}
+
+/* Restante do seu CSS permanece igual abaixo disso */
+.menu-toggle {
+  font-size: 22px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #fff;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.add-members {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.user-avatars {
+  display: flex;
+  gap: -5px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid white;
+  margin-left: -5px;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.header-icon {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, #e91e63, #9c27b0);
+  color: white;
+  position: fixed;
+  left: -280px;
+  top: 60px; /* Abaixo do header */
+  height: calc(100vh - 60px); /* Altura ajustada para o header */
+  transition: left 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-btn {
+  margin: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.main-content.sidebar-open {
+  margin-left: 280px;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 60px; /* Abaixo do header */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px); /* Altura ajustada para o header */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Submenu inicial fechado */
+.sub-nav {
+  display: none;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-top: 4px;
+}
+
+.sub-nav-item {
+  color: #d1d5db;
+  font-size: 14px;
+  padding: 6px 0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.sub-nav-item:hover {
+  color: #fff;
+}
+
+/* Estado aberto */
+.nav-item.open + .sub-nav {
+  display: flex;
+}
+
+/* Setinha animada */
+.arrow {
+  margin-left: auto;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-item.open .arrow {
+  transform: rotate(90deg);
+}
+
+/* Container principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Company Card Styles */
+.company-card {
+  background: linear-gradient(135deg, #b19cd9 0%, #c8b5db 100%);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.company-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.company-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.company-info input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #333;
+  font-size: 16px;
+  padding: 8px 0;
+  font-weight: 500;
+}
+
+.company-info input::placeholder {
+  color: rgba(51, 51, 51, 0.7);
+}
+
+.company-info input:focus {
+  outline: none;
+  border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+
+.company-name {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+.company-description {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 20px;
+}
+
+.company-description textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  resize: none;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+.company-description textarea::placeholder {
+  color: rgba(51, 51, 51, 0.7);
+  font-weight: 500;
+}
+
+.company-description textarea:focus {
+  outline: none;
+}
+
+/* Services Section */
+.services-section {
+  margin-top: 40px;
+}
+
+.services-title {
+  color: #e91e63;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  background: linear-gradient(135deg, #e8dff5 0%, #d4c5e8 100%);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.service-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.logo-placeholder {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+  border: 1px dashed rgba(102, 102, 102, 0.3);
+}
+
+.service-title {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.3);
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.service-title::placeholder {
+  color: rgba(51, 51, 51, 0.6);
+}
+
+.service-title:focus {
+  outline: none;
+  border-bottom-color: rgba(102, 102, 102, 0.6);
+}
+
+.service-description {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #555;
+  font-size: 12px;
+  resize: none;
+  min-height: 60px;
+  font-family: inherit;
+  text-align: center;
+}
+
+.service-description::placeholder {
+  color: rgba(85, 85, 85, 0.6);
+  font-weight: 500;
+}
+
+.service-description:focus {
+  outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px; /* Manter o padding para mobile */
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+
+  .company-card {
+    padding: 20px;
+  }
+
+  .company-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .service-card {
+    padding: 15px;
+  }
+  
+  /* Ajustes para sidebar em mobile */
+  .sidebar {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+  
+  .overlay {
+    top: 60px;
+    height: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .header-right {
+    gap: 10px;
+  }
+  
+  .add-members {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
