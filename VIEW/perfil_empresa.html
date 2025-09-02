@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil da Empresa</title>
+    <link rel="stylesheet" href="perfil_empresa.css">
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">E</div>
+                <h2>ELOA</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../VIEW/home.html" class="nav-item active">
+                    <div class="nav-icon">🏠</div>
+                    <span>Home</span>
+                </a>
+        
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">⚙️</div>
+                    <span>Serviços</span>
+                    <span class="arrow">▶</span>
+                </a>
+    
+                <div class="sub-nav">
+                    <a href="../VIEW/lista_servico.html" class="sub-nav-item">Lista serviço</a>
+                    <a href="../VIEW/cadastro_servico.html" class="sub-nav-item">Cadastrar</a>
+                </div>
+
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">📋</div>
+                    <span>Projetos</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">📅</div>
+                    <span>Calendário</span>
+                </a>
+            </nav>
+
+            <button class="logout-btn">
+                <span>🚪</span>
+                <span>Logout</span>
+            </button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Header -->
+            <header class="header">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                
+                <div class="header-right">
+                    <div class="add-members">
+                        <div class="user-avatars">
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                        </div>
+                        <span>ADD MEMBROS</span>
+                    </div>
+                    
+                    <div class="header-icons">
+                        <div class="header-icon">🔍</div>
+                        <div class="header-icon">🔔</div>
+                        <div class="header-icon">👤</div>
+                    </div>
+                </div>
+            </header>
+    <div class="container">
+        <div class="company-card">
+            <div class="company-header">
+                <div class="profile-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="company-info">
+                    <input type="text" class="company-name" placeholder="Nome da empresa" />
+                    <input type="tel" class="company-phone" placeholder="Telefone" />
+                    <input type="email" class="company-email" placeholder="Email" />
+                </div>
+            </div>
+            <div class="company-description">
+                <textarea placeholder="DESCRIÇÃO DA EMPRESA..."></textarea>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="services-section">
+            <h2 class="services-title">Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="logo-placeholder">
+                            <span>LOGO EMPRESA</span>
+                        </div>
+                        <input type="text" class="service-title" placeholder="Título do serviço" />
+                    </div>
+                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="logo-placeholder">
+                            <span>LOGO EMPRESA</span>
+                        </div>
+                        <input type="text" class="service-title" placeholder="Título do serviço" />
+                    </div>
+                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="logo-placeholder">
+                            <span>LOGO EMPRESA</span>
+                        </div>
+                        <input type="text" class="service-title" placeholder="Título do serviço" />
+                    </div>
+                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="logo-placeholder">
+                            <span>LOGO EMPRESA</span>
+                        </div>
+                        <input type="text" class="service-title" placeholder="Título do serviço" />
+                    </div>
+                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="perfil_empresa.js"></script>
+</body>
+</html>
