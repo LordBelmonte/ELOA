@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         mysqli_commit($conexao);
-        echo "<script>alert('Cadastro realizado com sucesso!'); window.location='../index.php';</script>";
+        echo "<script>alert('Cadastro realizado com sucesso!'); window.location='../VIEW/login_cadastro.html';</script>";
 
     } catch (Exception $e) {
         mysqli_rollback($conexao);
@@ -172,4 +172,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_close($conexao);
 }
 ?>
+
 
