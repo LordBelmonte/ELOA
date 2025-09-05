@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+$id_empresa = null;
+$id_responsavel = null;
+$id_colaborador = null;
+
+if (!isset($_SESSION['tipo_usuario']) || !isset($_SESSION['id_usuario'])) {
+    header('Location: login_cadastro.html');
+    exit;
+}
+
+$nome = $_SESSION['nome_usuario'];
+
+if($_SESSION['tipo_usuario'] === 'empresa') {
+    $id_empresa = $_SESSION['id_usuario'];
+} elseif($_SESSION['tipo_usuario'] === 'responsavel') {
+    $id_responsavel = $_SESSION['id_usuario'];
+} elseif($_SESSION['tipo_usuario'] === 'colaborador') {
+    $id_colaborador = $_SESSION['id_usuario'];
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,6 +34,7 @@
     
 </head>
 <body>
+     
     <div class="container">
         <!-- Aqui vai carregar o nav -->
         <div id="sidebar-container"></div> 
@@ -22,51 +47,58 @@
             <button class="close-modal" id="closeModal">×</button>
             <div class="modal-header">
                 <h2>Cadastro de serviços</h2>
+                <h3>Olá <?= htmlspecialchars($nome) ?></h3>
             </div>
             
-            <form id="serviceForm">
+            <form id="serviceForm" method="POST" enctype="multipart/form-data" action="../CONTROLLER/cadastro_servico.php">
+
+             
+             
                 <div class="form-group">
                     <label for="serviceTitle">Título do serviço</label>
-                    <input type="text" id="serviceTitle" class="form-input" required>
+                    <input type="text" id="serviceTitle" name="titulo_servico" class="form-input" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="serviceDescription">Descrição do serviço</label>
-                    <input type="text" id="serviceDescription" class="form-input" required>
+                    <input type="text" id="serviceDescription" name="desc_servico" class="form-input" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="serviceDescription">Categoria do serviço</label>
-                    <select id="serviceDescription" class="form-input" required></selectid> name="servicos" id="servicos">
+                    <label for="serviceCategory">Categoria do serviço</label>
+                    <select id="serviceCategory" name="categoria_servico" class="form-input" required>
                         <option value="Administrativo">Administrativo</option>
                         <option value="Financeiro">Financeiro</option>
                         <option value="RecursosHumanos">Recursos Humanos</option>
-                        <option value="Marketing ">Marketing </option>
-                        <option value="Produção ">Produção </option>
-                        <option value="Logística ">Logística </option>
-                        <option value=" Tecnologia da Informação (TI) ">Tecnologia da Informação (TI)</option>
-                        <option value="Jurídico ">Jurídico</option>
-                        <option value="Atendimento ao Cliente ">Atendimento ao Cliente</option>
+                        <option value="Marketing">Marketing </option>
+                        <option value="Produção">Produção </option>
+                        <option value="Logística">Logística </option>
+                        <option value="Tecnologia da Informação (TI)">Tecnologia da Informação (TI)</option>
+                        <option value="Jurídico">Jurídico</option>
+                        <option value="Atendimento ao Cliente">Atendimento ao Cliente</option>
                       </select> 
                 </div>                
                 
                 <div class="form-group">
                     <label for="servicePricing">Precificação</label>
-                    <input type="text" id="servicePricing" class="form-input" required>
+                    <input type="text" id="servicePricing" name="precificacao" class="form-input" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="paymentMethod">Forma de Pagamento</label>
-                    <input type="text" id="paymentMethod" class="form-input" required>
+                    <input type="text" id="paymentMethod" name="forma_pagamento" class="form-input" required>
                 </div>
                 
                 <div class="image-section">
-                    <label>Imagem</label>
+                     <label for="serviceImage">Imagem</label>
+                     <input type="file" id="serviceImage" name="img_servico" accept="image/*" required>
+
+                     <img id="previewImage" src="" alt="Pré-visualização" style="display:none; max-width: 100%; margin-top:10px; border-radius:10px;">
                     <div class="modal-buttons">
-                        <button type="button" class="modal-btn upload-btn" id="uploadBtn">UPLOAD</button>
                         <button type="submit" class="modal-btn submit-btn">PRONTO</button>
                     </div>
                 </div>
+
             </form>
         </div>
 
@@ -136,5 +168,25 @@
     <!-- Added link to external JavaScript file -->
      <script src="../NAVEGACAO_WEB/menu.js"></script>
     <script src="../JS/cadastro_servico.js"></script>
+
+    <script>
+const serviceImage = document.getElementById('serviceImage');
+const previewImage = document.getElementById('previewImage');
+
+serviceImage.addEventListener('change', () => {
+    const file = serviceImage.files[0];
+    if(file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        previewImage.src = '';
+        previewImage.style.display = 'none';
+    }
+});
+</script>
 </body>
 </html>
