@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id_usuario'], $_SESSION['tipo_usuario'], $_SESSION['nome_usuario'])) {
+    header('Location: login_cadastro.html');
+    exit;
+}
+
+$nome = $_SESSION['nome_usuario'];
+$tipo_usuario = $_SESSION['tipo_usuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,7 +31,7 @@
                 <main class="main-section">
                     <!-- Welcome Banner -->
                     <div class="welcome-banner">
-                        <h1>HELLO ELOA</h1>
+                        <h1>Olá <?= htmlspecialchars($nome) ?></h1>
                         <p>BEM VINDA A PLATAFORMA ELOA, ONDE O MICRO E GRANDE NEGÓCIOS SE ENCONTRAM</p>
                     </div>
 
