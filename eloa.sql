@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/09/2025 às 00:00
+-- Tempo de geração: 05/09/2025 às 04:04
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -50,8 +50,8 @@ CREATE TABLE `cadastro_colaborador` (
 --
 
 INSERT INTO `cadastro_colaborador` (`id_colaborador`, `id_responsavel`, `img_colaborador`, `colab_nome`, `colab_sobrenome`, `colab_cargo`, `colab_departamento`, `colab_genero`, `colab_email`, `colab_senha`, `colab_telefone`, `colab_celular`, `colab_linkedin`, `id_empresa`, `data_colaborador`) VALUES
-(7, 7, '1755809023_colaborador.png', 'Afonso', 'Oliveira', 'Aux de Marketing', 'Marketing', 'Masculino', 'afonso@gmail.com', '$2y$10$QB9rbey38SfuVj/5sVV8kO0DELQZQTA3M.qJw/Zh8fsbziVRA2Nle', '111111', '000000', 'não possui', 13, '2025-08-21 20:43:43'),
-(8, 7, '', 'Maria', 'Soares', 'Aux de Marketing', 'Marketing', 'Feminino', 'maria@gmail.com', '$2y$10$h6BX8fclfjchQf2OZlYvqucGQSn.xdKUHyBZi4WhlKZTsCVd/sHUO', '333333', '222222', 'não possui', 13, '2025-08-21 20:43:43');
+(11, 9, '1757037019_colaborador.webp', 'Fernando', 'Moraes', 'Aux de Marketing', 'Marketing', 'Masculino', 'fernando@gmail.com', '$2y$10$6iehNwyzYq2ALHYV09s2oOyAFr8ihbsNNkH9Py8NV07kfU5yGDqca', '06066060', '07077007', 'Não possui', 15, '2025-09-05 01:50:19'),
+(12, 9, '1757037019_colaboradora.webp', 'Maria', 'Cristina', 'Aux de Marketing', 'Marketing', 'Feminino', 'maria@gmail.com', '$2y$10$wQP7Z.nN329kpPSragBGFejPu323xjF3Jha5I4GuJgwxknPZasYh.', '040404', '050505', 'Não Possui', 15, '2025-09-05 01:50:19');
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE `cadastro_empresa` (
 --
 
 INSERT INTO `cadastro_empresa` (`id_empresa`, `img_empresa`, `razao_social`, `area_atuacao`, `nome`, `cnpj_mei`, `insc_estadual`, `insc_municipal`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `email`, `senha`, `data_empresa`) VALUES
-(13, '1755809023_eniac.jpeg', 'Centro Universitário Eniac', 'Educação', 'Eniac', '12345', '6789', '9876', '07012-030', 'Centro', '89', 'Prédio', 'Centro de Guarulhos', 'Guarulhos', 'São Paulo', 'eniac@gmail.com', '$2y$10$zZtMXzKl0vLWIjw8wBc1ZelIShH0WpRraD/jiYcpJrgXj9FCmDhhC', '2025-08-21 20:43:43');
+(15, '1757037019_empresa coca.jpg', 'Coca', 'Fabricação e Venda', 'Coca-Cola', '1111111', '222222', '333333', '01010101', 'Rua', '21', 'Empresa', 'Parque Novo Mundo', 'Guarulhos', 'São Paulo', 'coca@gmail.com', '$2y$10$Ul8uoaTIgnAGCdKpEgSkUesmG01U85rcSbW5y.U9r4GsIB0fV0r3a', '2025-09-05 01:50:19');
 
 -- --------------------------------------------------------
 
@@ -115,7 +115,7 @@ CREATE TABLE `cadastro_responsavel` (
 --
 
 INSERT INTO `cadastro_responsavel` (`id_responsavel`, `id_empresa`, `img_responsavel`, `resp_nome`, `resp_sobrenome`, `resp_cargo`, `resp_departamento`, `resp_genero`, `resp_telefone`, `resp_celular`, `resp_linkedin`, `resp_email`, `resp_senha`, `data_responsavel`) VALUES
-(7, 13, '1755809023_responsavel.avif', 'Cristina', 'Ribeiro', 'Aux de RH', 'RH', 'Feminino', '11123', '11321', 'não possui', 'cristina@gmail.com', '$2y$10$YZmfQTK9wGZjk1TTld0XtOBXTyO5s0TzwtziQsBs8/61ejrijACt.', '2025-08-21 20:43:43');
+(9, 15, '1757037019_responsavel.avif', 'Denise', 'Santos', 'Gerente', 'Gerencia', 'Feminino', '09090909', '08080808', 'Não possui', 'denise@gmail.com', '$2y$10$qfOZpadQ0r9UWg7V7VQzpeORkqL5xbnwUM1Z3DOhFwnmFVWebsJ.W', '2025-09-05 01:50:19');
 
 -- --------------------------------------------------------
 
@@ -136,6 +136,13 @@ CREATE TABLE `cadastro_servicos` (
   `img_servico` varchar(255) NOT NULL,
   `data_servico` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `cadastro_servicos`
+--
+
+INSERT INTO `cadastro_servicos` (`id_servicos`, `id_colaborador`, `id_responsavel`, `id_empresa`, `titulo_servico`, `desc_servico`, `categoria_servico`, `precificacao`, `forma_pagamento`, `img_servico`, `data_servico`) VALUES
+(21, 11, 9, 15, 'Salão de Beleza', 'Cabeleleira Leila', 'Atendimento ao Cliente', '0', 'Dinheiro ou Pix', 'UPLOADS/SERVICOS/1757037757_servico_cabeleleiro.jpg', '2025-09-05 02:02:37');
 
 --
 -- Índices para tabelas despejadas
@@ -180,25 +187,25 @@ ALTER TABLE `cadastro_servicos`
 -- AUTO_INCREMENT de tabela `cadastro_colaborador`
 --
 ALTER TABLE `cadastro_colaborador`
-  MODIFY `id_colaborador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_colaborador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `cadastro_empresa`
 --
 ALTER TABLE `cadastro_empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `cadastro_responsavel`
 --
 ALTER TABLE `cadastro_responsavel`
-  MODIFY `id_responsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_responsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `cadastro_servicos`
 --
 ALTER TABLE `cadastro_servicos`
-  MODIFY `id_servicos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_servicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restrições para tabelas despejadas
