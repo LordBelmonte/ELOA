@@ -4,85 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil da Empresa</title>
-    <link rel="stylesheet" href="../CSS/perfil_empresa.css">
-    <link rel="stylesheet" href="../NAVEGACAO_WEB/menu.css">
+    <link rel="stylesheet" href="perfil_emp.css">
 </head>
 <body>
-    <div class="overlay" id="overlay"></div>
+      <!-- Overlay -->
+      <div class="overlay" id="overlay"></div>
 
-      <!-- Aqui vai carregar o nav -->
-        <div id="sidebar-container"></div>
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+          <div class="sidebar-header">
+              <div class="logo">E</div>
+              <h2>ELOA</h2>
+          </div>
+          
+          <nav class="sidebar-nav">
+              <a href="../VIEW/home.html" class="nav-item active">
+                  <div class="nav-icon">🏠</div>
+                  <span>Home</span>
+              </a>
+      
+              <a href="#" class="nav-item">
+                  <div class="nav-icon">⚙️</div>
+                  <span>Serviços</span>
+                  <span class="arrow">▶</span>
+              </a>
+  
+              <div class="sub-nav">
+                  <a href="../VIEW/lista_servico.html" class="sub-nav-item">Lista serviço</a>
+                  <a href="../VIEW/cadastro_servico.html" class="sub-nav-item">Cadastrar</a>
+              </div>
 
-        <!-- Main Content -->
-        <div class="main-content" id="mainContent">
-            
+              <a href="#" class="nav-item">
+                  <div class="nav-icon">📋</div>
+                  <span>Projetos</span>
+              </a>
+
+              <a href="#" class="nav-item">
+                  <div class="nav-icon">📅</div>
+                  <span>Calendário</span>
+              </a>
+          </nav>
+
+          <button class="logout-btn">
+              <span>🚪</span>
+              <span>Logout</span>
+          </button>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content" id="mainContent">
+          <!-- Header -->
+          <header class="header">
+              <button class="menu-toggle" id="menuToggle">☰</button>
+              
+              <div class="header-right">
+                  <div class="add-members">
+                      <div class="user-avatars">
+                          <div class="avatar"></div>
+                          <div class="avatar"></div>
+                          <div class="avatar"></div>
+                          <div class="avatar"></div>
+                      </div>
+                      <span>ADD MEMBROS</span>
+                  </div>
+                  
+                  <div class="header-icons">
+                      <div class="header-icon">🔍</div>
+                      <div class="header-icon">🔔</div>
+                      <div class="header-icon">👤</div>
+                  </div>
+              </div>
+          </header>
     <div class="container">
-        <div class="company-card">
-            <div class="company-header">
-                <div class="profile-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
-                        <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-                <div class="company-info">
-                    <input type="text" class="company-name" placeholder="Nome da empresa" />
-                    <input type="tel" class="company-phone" placeholder="Telefone" />
-                    <input type="email" class="company-email" placeholder="Email" />
-                </div>
+        <!-- Header da Empresa -->
+        <div class="company-header">
+            <div class="company-avatar">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
             </div>
-            <div class="company-description">
-                <textarea placeholder="DESCRIÇÃO DA EMPRESA..."></textarea>
+            <div class="company-info">
+                <h1>Nome da empresa</h1>
+                <p>Telefone</p>
+                <p>Email</p>
+            </div>
+            <button class="partnership-btn" onclick="handlePartnership()">Parceria</button>
+        </div>
+
+        <!-- Descrição da Empresa -->
+        <div class="description-section">
+            <h2>DESCRIÇÃO DA EMPRESA...</h2>
+            <div class="description-content">
+                Aqui você pode adicionar uma descrição detalhada sobre a empresa, seus valores, missão, visão e principais atividades desenvolvidas.
             </div>
         </div>
 
-        <!-- Services Section -->
-        <div class="services-section">
-            <h2 class="services-title">Serviços</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="logo-placeholder">
-                            <span>LOGO EMPRESA</span>
-                        </div>
-                        <input type="text" class="service-title" placeholder="Título do serviço" />
-                    </div>
-                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+        <!-- Seção de Serviços -->
+        <h2 class="section-title">Serviços</h2>
+        <div class="cards-grid" id="services-grid">
+            <div class="service-card">
+                <div class="service-logo">
+                    <div class="logo-placeholder">LOGO<br>EMPRESA</div>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="logo-placeholder">
-                            <span>LOGO EMPRESA</span>
-                        </div>
-                        <input type="text" class="service-title" placeholder="Título do serviço" />
-                    </div>
-                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+                <div class="service-title">Título do serviço</div>
+                <div class="service-description">BREVE DESCRIÇÃO DO SERVIÇO</div>
+            </div>
+            <div class="service-card">
+                <div class="service-logo">
+                    <div class="logo-placeholder">LOGO<br>EMPRESA</div>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="logo-placeholder">
-                            <span>LOGO EMPRESA</span>
-                        </div>
-                        <input type="text" class="service-title" placeholder="Título do serviço" />
-                    </div>
-                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+                <div class="service-title">Título do serviço</div>
+                <div class="service-description">BREVE DESCRIÇÃO DO SERVIÇO</div>
+            </div>
+            <div class="service-card">
+                <div class="service-logo">
+                    <div class="logo-placeholder">LOGO<br>EMPRESA</div>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="logo-placeholder">
-                            <span>LOGO EMPRESA</span>
-                        </div>
-                        <input type="text" class="service-title" placeholder="Título do serviço" />
-                    </div>
-                    <textarea class="service-description" placeholder="BREVE DESCRIÇÃO DO SERVIÇO"></textarea>
+                <div class="service-title">Título do serviço</div>
+                <div class="service-description">BREVE DESCRIÇÃO DO SERVIÇO</div>
+            </div>
+            <div class="service-card">
+                <div class="service-logo">
+                    <div class="logo-placeholder">LOGO<br>EMPRESA</div>
                 </div>
+                <div class="service-title">Título do serviço</div>
+                <div class="service-description">BREVE DESCRIÇÃO DO SERVIÇO</div>
+            </div>
+        </div>
+
+        <!-- Seção de Colaboradores -->
+        <h2 class="section-title">Colaboradores</h2>
+        <div class="cards-grid" id="collaborators-grid">
+            <div class="collaborator-card">
+                <div class="collaborator-name">Nome do colaborador</div>
+                <div class="collaborator-photo">
+                    <div class="photo-placeholder">Foto do<br>colaborador</div>
+                </div>
+                <div class="collaborator-role">Cargo do Colaborador</div>
+            </div>
+            <div class="collaborator-card">
+                <div class="collaborator-name">Nome do colaborador</div>
+                <div class="collaborator-photo">
+                    <div class="photo-placeholder">Foto do<br>colaborador</div>
+                </div>
+                <div class="collaborator-role">Cargo do Colaborador</div>
+            </div>
+            <div class="collaborator-card">
+                <div class="collaborator-name">Nome do colaborador</div>
+                <div class="collaborator-photo">
+                    <div class="photo-placeholder">Foto do<br>colaborador</div>
+                </div>
+                <div class="collaborator-role">Cargo do Colaborador</div>
+            </div>
+            <div class="collaborator-card">
+                <div class="collaborator-name">Nome do colaborador</div>
+                <div class="collaborator-photo">
+                    <div class="photo-placeholder">Foto do<br>colaborador</div>
+                </div>
+                <div class="collaborator-role">Cargo do Colaborador</div>
             </div>
         </div>
     </div>
 
-    <script src="../NAVEGACAO_WEB/menu.js"></script>
+    <script src="perfil_emp.js"></script>
 </body>
 </html>
