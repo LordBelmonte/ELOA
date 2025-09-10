@@ -77,15 +77,16 @@ CREATE TABLE `cadastro_empresa` (
   `estado` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(200) NOT NULL,
-  `data_empresa` timestamp NOT NULL DEFAULT current_timestamp()
+  `data_empresa` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tel_empresa` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cadastro_empresa`
 --
 
-INSERT INTO `cadastro_empresa` (`id_empresa`, `img_empresa`, `razao_social`, `area_atuacao`, `nome`, `cnpj_mei`, `insc_estadual`, `insc_municipal`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `email`, `senha`, `data_empresa`) VALUES
-(15, '1757037019_empresa coca.jpg', 'Coca', 'Fabricação e Venda', 'Coca-Cola', '1111111', '222222', '333333', '01010101', 'Rua', '21', 'Empresa', 'Parque Novo Mundo', 'Guarulhos', 'São Paulo', 'coca@gmail.com', '$2y$10$Ul8uoaTIgnAGCdKpEgSkUesmG01U85rcSbW5y.U9r4GsIB0fV0r3a', '2025-09-05 01:50:19');
+INSERT INTO `cadastro_empresa` (`id_empresa`, `img_empresa`, `razao_social`, `area_atuacao`, `nome`, `cnpj_mei`, `insc_estadual`, `insc_municipal`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `email`, `senha`, `data_empresa`, `tel_empresa`) VALUES
+(15, '1757037019_empresa coca.jpg', 'Coca', 'Fabricação e Venda', 'Coca-Cola', '1111111', '222222', '333333', '01010101', 'Rua', '21', 'Empresa', 'Parque Novo Mundo', 'Guarulhos', 'São Paulo', 'coca@gmail.com', '$2y$10$Ul8uoaTIgnAGCdKpEgSkUesmG01U85rcSbW5y.U9r4GsIB0fV0r3a', '2025-09-05 01:50:19', '11984554728');
 
 -- --------------------------------------------------------
 
