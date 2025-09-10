@@ -1,174 +1,97 @@
-// Auto-save functionality
-class BusinessProfile {
-  constructor() {
-    this.initializeElements()
-    this.loadSavedData()
-    this.setupEventListeners()
-    this.setupAutoResize()
-  }
-
-  initializeElements() {
-    // Company info elements
-    this.companyName = document.querySelector(".company-name")
-    this.companyPhone = document.querySelector(".company-phone")
-    this.companyEmail = document.querySelector(".company-email")
-    this.companyDescription = document.querySelector(".company-description textarea")
-
-    // Service elements
-    this.serviceTitles = document.querySelectorAll(".service-title")
-    this.serviceDescriptions = document.querySelectorAll(".service-description")
-  }
-
-  setupEventListeners() {
-    // Company info auto-save
-    ;[this.companyName, this.companyPhone, this.companyEmail, this.companyDescription].forEach((element) => {
-      if (element) {
-        element.addEventListener("input", () => this.saveData())
-        element.addEventListener("blur", () => this.saveData())
-      }
-    })
-
-    // Services auto-save
-    this.serviceTitles.forEach((title, index) => {
-      title.addEventListener("input", () => this.saveServiceData(index))
-      title.addEventListener("blur", () => this.saveServiceData(index))
-    })
-
-    this.serviceDescriptions.forEach((description, index) => {
-      description.addEventListener("input", () => this.saveServiceData(index))
-      description.addEventListener("blur", () => this.saveServiceData(index))
-    })
-  }
-
-  setupAutoResize() {
-    // Auto-resize textareas
-    const textareas = document.querySelectorAll("textarea")
-    textareas.forEach((textarea) => {
-      textarea.addEventListener("input", () => this.autoResize(textarea))
-      // Initial resize
-      this.autoResize(textarea)
-    })
-  }
-
-  autoResize(textarea) {
-    textarea.style.height = "auto"
-    textarea.style.height = textarea.scrollHeight + "px"
-  }
-
-  saveData() {
-    const companyData = {
-      name: this.companyName?.value || "",
-      phone: this.companyPhone?.value || "",
-      email: this.companyEmail?.value || "",
-      description: this.companyDescription?.value || "",
-    }
-
-    localStorage.setItem("businessProfile_company", JSON.stringify(companyData))
-  }
-
-  saveServiceData(index) {
-    const services = JSON.parse(localStorage.getItem("businessProfile_services")) || []
-
-    services[index] = {
-      title: this.serviceTitles[index]?.value || "",
-      description: this.serviceDescriptions[index]?.value || "",
-    }
-
-    localStorage.setItem("businessProfile_services", JSON.stringify(services))
-  }
-
-  loadSavedData() {
-    // Load company data
-    const companyData = JSON.parse(localStorage.getItem("businessProfile_company"))
-    if (companyData) {
-      if (this.companyName) this.companyName.value = companyData.name || ""
-      if (this.companyPhone) this.companyPhone.value = companyData.phone || ""
-      if (this.companyEmail) this.companyEmail.value = companyData.email || ""
-      if (this.companyDescription) this.companyDescription.value = companyData.description || ""
-    }
-
-    // Load services data
-    const servicesData = JSON.parse(localStorage.getItem("businessProfile_services")) || []
-    servicesData.forEach((service, index) => {
-      if (this.serviceTitles[index]) {
-        this.serviceTitles[index].value = service.title || ""
-      }
-      if (this.serviceDescriptions[index]) {
-        this.serviceDescriptions[index].value = service.description || ""
-      }
-    })
-  }
-
-  // Method to clear all data
-  clearAllData() {
-    localStorage.removeItem("businessProfile_company")
-    localStorage.removeItem("businessProfile_services")
-    location.reload()
-  }
-
-  // Method to export data
-  exportData() {
-    const companyData = JSON.parse(localStorage.getItem("businessProfile_company")) || {}
-    const servicesData = JSON.parse(localStorage.getItem("businessProfile_services")) || []
-
-    const exportData = {
-      company: companyData,
-      services: servicesData,
-      exportDate: new Date().toISOString(),
-    }
-
-    const dataStr = JSON.stringify(exportData, null, 2)
-    const dataBlob = new Blob([dataStr], { type: "application/json" })
-
-    const link = document.createElement("a")
-    link.href = URL.createObjectURL(dataBlob)
-    link.download = "business-profile.json"
-    link.click()
-  }
+function handlePartnership() {
+  alert("Solicitação de parceria enviada!")
 }
 
-// Initialize the application when DOM is loaded
+// Adicionar animações de entrada
 document.addEventListener("DOMContentLoaded", () => {
-  const businessProfile = new BusinessProfile()
+  const cards = document.querySelectorAll(".service-card, .collaborator-card")
 
-  // Make methods available globally for debugging
-  window.businessProfile = businessProfile
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = "1"
+          entry.target.style.transform = "translateY(0)"
+        }, index * 100)
+      }
+    })
+  })
 
-  // Add keyboard shortcuts
-  document.addEventListener("keydown", (e) => {
-    // Ctrl/Cmd + S to save (though auto-save is already active)
-    if ((e.ctrlKey || e.metaKey) && e.key === "s") {
-      e.preventDefault()
-      businessProfile.saveData()
-      console.log("Data saved manually")
-    }
-
-    // Ctrl/Cmd + E to export data
-    if ((e.ctrlKey || e.metaKey) && e.key === "e") {
-      e.preventDefault()
-      businessProfile.exportData()
-    }
+  cards.forEach((card) => {
+    card.style.opacity = "0"
+    card.style.transform = "translateY(20px)"
+    card.style.transition = "all 0.6s ease"
+    observer.observe(card)
   })
 })
 
-// Add some utility functions
-function formatPhoneNumber(input) {
-  // Simple phone formatting for Brazilian numbers
-  let value = input.value.replace(/\D/g, "")
-  if (value.length >= 11) {
-    value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")
-  } else if (value.length >= 7) {
-    value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3")
-  } else if (value.length >= 3) {
-    value = value.replace(/(\d{2})(\d{0,5})/, "($1) $2")
-  }
-  input.value = value
+// Funcionalidade para adicionar novos serviços (exemplo)
+function addService(title, description) {
+  const servicesGrid = document.getElementById("services-grid")
+  const newCard = document.createElement("div")
+  newCard.className = "service-card"
+  newCard.innerHTML = `
+        <div class="service-logo">
+            <div class="logo-placeholder">LOGO<br>EMPRESA</div>
+        </div>
+        <div class="service-title">${title}</div>
+        <div class="service-description">${description}</div>
+    `
+  servicesGrid.appendChild(newCard)
 }
 
-// Apply phone formatting to phone input
+// Funcionalidade para adicionar novos colaboradores (exemplo)
+function addCollaborator(name, role) {
+  const collaboratorsGrid = document.getElementById("collaborators-grid")
+  const newCard = document.createElement("div")
+  newCard.className = "collaborator-card"
+  newCard.innerHTML = `
+        <div class="collaborator-name">${name}</div>
+        <div class="collaborator-photo">
+            <div class="photo-placeholder">Foto do<br>colaborador</div>
+        </div>
+        <div class="collaborator-role">${role}</div>
+    `
+  collaboratorsGrid.appendChild(newCard)
+}
+// Importar o nav em todas as páginas
 document.addEventListener("DOMContentLoaded", () => {
-  const phoneInput = document.querySelector(".company-phone")
-  if (phoneInput) {
-    phoneInput.addEventListener("input", () => formatPhoneNumber(phoneInput))
-  }
+  fetch("../NAVEGACAO_WEB/menu.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("sidebar-container").innerHTML = data
+
+      // depois de carregar, ativar o JS do menu
+      initSidebar()
+    })
 })
+
+// Sidebar toggle functionality
+function initSidebar() {
+const menuToggle = document.getElementById("menuToggle")
+const sidebar = document.getElementById("sidebar")
+const mainContent = document.getElementById("mainContent")
+const overlay = document.getElementById("overlay")
+
+function toggleSidebar() {
+  sidebar.classList.toggle("active")
+  mainContent.classList.toggle("sidebar-open")
+  overlay.classList.toggle("active")
+}
+
+function closeSidebar() {
+  sidebar.classList.remove("active")
+  mainContent.classList.remove("sidebar-open")
+  overlay.classList.remove("active")
+}
+
+menuToggle.addEventListener("click", toggleSidebar)
+overlay.addEventListener("click", closeSidebar)
+
+// Abrir/fechar submenu de Serviços
+const servicosNav = document.querySelector(".nav-item:nth-child(2)") // pega o "Serviços"
+servicosNav.addEventListener("click", (e) => {
+  e.preventDefault()
+  servicosNav.classList.toggle("open")
+})    
+}
