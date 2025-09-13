@@ -6,7 +6,7 @@ $id_responsavel = null;
 $id_colaborador = null;
 
 if (!isset($_SESSION['tipo_usuario']) || !isset($_SESSION['id_usuario'])) {
-    header('Location: login_cadastro.html');
+    header('Location: login_cadastro.php');
     exit;
 }
 

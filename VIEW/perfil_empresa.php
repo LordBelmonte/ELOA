@@ -20,74 +20,15 @@
     <link rel="stylesheet" href="../CSS/perfil_empresa.css">
 </head>
 <body>
-      <!-- Overlay -->
-      <div class="overlay" id="overlay"></div>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 
-      <!-- Sidebar -->
-      <div class="sidebar" id="sidebar">
-          <div class="sidebar-header">
-              <div class="logo">E</div>
-              <h2>ELOA</h2>
-          </div>
-          
-          <nav class="sidebar-nav">
-              <a href="../VIEW/home.html" class="nav-item active">
-                  <div class="nav-icon">🏠</div>
-                  <span>Home</span>
-              </a>
-      
-              <a href="#" class="nav-item">
-                  <div class="nav-icon">⚙️</div>
-                  <span>Serviços</span>
-                  <span class="arrow">▶</span>
-              </a>
-  
-              <div class="sub-nav">
-                  <a href="../VIEW/lista_servico.html" class="sub-nav-item">Lista serviço</a>
-                  <a href="../VIEW/cadastro_servico.html" class="sub-nav-item">Cadastrar</a>
-              </div>
+    <!-- Aqui vai carregar o nav -->
+    <div id="sidebar-container"></div>   
 
-              <a href="#" class="nav-item">
-                  <div class="nav-icon">📋</div>
-                  <span>Projetos</span>
-              </a>
-
-              <a href="#" class="nav-item">
-                  <div class="nav-icon">📅</div>
-                  <span>Calendário</span>
-              </a>
-          </nav>
-
-          <button class="logout-btn">
-              <span>🚪</span>
-              <span>Logout</span>
-          </button>
-      </div>
-
-      <!-- Main Content -->
-      <div class="main-content" id="mainContent">
-          <!-- Header -->
-          <header class="header">
-              <button class="menu-toggle" id="menuToggle">☰</button>
-              
-              <div class="header-right">
-                  <div class="add-members">
-                      <div class="user-avatars">
-                          <div class="avatar"></div>
-                          <div class="avatar"></div>
-                          <div class="avatar"></div>
-                          <div class="avatar"></div>
-                      </div>
-                      <span>ADD MEMBROS</span>
-                  </div>
-                  
-                  <div class="header-icons">
-                      <div class="header-icon">🔍</div>
-                      <div class="header-icon">🔔</div>
-                      <div class="header-icon">👤</div>
-                  </div>
-              </div>
-          </header>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        
     <div class="container">
         <!-- Header da Empresa -->
         <div class="company-header">
@@ -154,7 +95,7 @@
             ?>
         </div>
     </div>
-
-    <script src="perfil_empresa.js"></script>
+    <script src="../NAVEGACAO_WEB/menu.js"></script>
+    <script src="../JS/perfil_empresa.js"></script>
 </body>
 </html>

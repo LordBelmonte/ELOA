@@ -11,15 +11,15 @@
 <body>
     <div class="dashboard-container">
 
-        <!-- Aqui vai carregar o nav -->
-        <div id="sidebar-container"></div>   
+    <!-- Aqui vai carregar o nav -->
+    <div id="sidebar-container"></div>   
 
-        <!-- Main Content -->
-        <main class="main-content" id="mainContent">
-            <div class="services-header">
-                <h1 class="services-title">Serviços</h1>
-                <button class="view-all-btn">Ver todos →</button>
-            </div>
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <div class="services-header">
+            <h1 class="services-title">Serviços</h1>
+            <button class="view-all-btn">Ver todos →</button>
+        </div>
 
             <div class="services-grid" id="servicesGrid">
             <?php

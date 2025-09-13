@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login e Cadastro</title>
+  <link rel="stylesheet" href="../CSS/login.css">
+  <link class="form-cadastro" href="CSS/forms-cadastro.css">
+</head>
+<body>
+  <main class="login-wrapper">
+    <div class="login-box">
+
+      <section class="login-left">
+        <!-- Espaço para imagem, fundo ou arte -->
+      </section>
+
+      <div class="form-container">
+
+        <!-- LOGIN -->
+        <section class="form-panel active" id="login-panel">
+          <img src="logo.png" alt="Logo Empresa" class="logo" />
+          <h2>Login</h2>
+          <form id="form-login" method="POST" action="../CONTROLLER/login.php">
+            <label for="email">E-mail</label>
+            <input type="text" id="email" placeholder="Digite seu e-mail" name="email_login"/>
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Digite sua senha" name="senha_login"/>
+
+            <div class="form-extra">
+              <label><input type="checkbox" /> Lembrar-me</label>
+              <a href="#">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit">Entrar</button>
+          </form>
+          <p>Ainda não tem conta? <span onclick="toggleForm()">Cadastre-se</span></p>
+        </section>
+
+        <!-- CADASTRO -->
+        <section class="form-panel hidden" id="signup-panel">
+          <img src="logo.png" alt="Logo Empresa" class="logo" />
+          <h2>Cadastro</h2>
+          <form>
+            <label for="signup-email">E-mail</label>
+            <input type="email" id="signup-email" placeholder="Digite seu e-mail" required />
+
+            <label for="signup-password">Senha</label>
+            <input type="password" id="signup-password" placeholder="Crie uma senha" required />
+
+            <label for="signup-confirm">Confirme sua senha</label>
+            <input type="password" id="signup-confirm" placeholder="Confirme sua senha" required />
+
+            <div class="form-extra">
+              <label>
+                <input type="checkbox" required /> Concordo com os <a href="#">termos de responsabilidade</a>
+              </label>
+            </div>
+          
+            <button type="button" onclick="window.location.href='formulario_cadastro.php'">Sign-up</button>
+
+            
+          </form>
+          <p>Já tem conta? <span onclick="toggleForm()">Entrar</span></p>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    function toggleForm() {
+      const login = document.getElementById('login-panel');
+      const signup = document.getElementById('signup-panel');
+
+      login.classList.toggle('active');
+      login.classList.toggle('hidden')
+     
+
+      signup.classList.toggle('active');
+      signup.classList.toggle('hidden')
+     
+    }
+
+  </script>
+</body>
+</html>
+
